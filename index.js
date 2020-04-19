@@ -41,6 +41,7 @@ morgan.token('body', function (req) {
   return JSON.stringify(req.body);
 });
 app.use(morgan(':method :url :status - :response-time ms - :body'));
+app.use(express.static('build'));
 
 app.get('/info', (req, res) => {
   let date = new Date();
@@ -63,7 +64,7 @@ app.get('/api/persons/:id', (req, res) => {
   }
 });
 
-app.delete('/api/person/:id', (request, response) => {
+app.delete('/api/persons/:id', (request, response) => {
   const id = Number(request.params.id);
   persons = persons.filter((p) => p.id !== id);
 
